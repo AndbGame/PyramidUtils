@@ -257,7 +257,7 @@ namespace PyramidUtils::Expression {
 		}
 	}
 
-	inline bool SetPhonemeModifierSmooth(RE::Actor* a_actor, int a_mode, int a_id1, int a_id2, int a_value, float a_speed, int a_time, RE::VMStackID a_stackId)
+	inline bool SetPhonemeModifierSmooth(RE::Actor* a_actor, int a_mode, int a_id1, int a_id2, int a_value, float a_speed, int a_time)
 	{
 		if (!a_actor) {
 			logger::warn("No actor found");
@@ -300,7 +300,7 @@ namespace PyramidUtils::Expression {
 					}
 				}
 
-			RE::BSScript::Internal::VirtualMachine::GetSingleton()->ReturnLatentResult<bool>(a_stackId, result);
+			//RE::BSScript::Internal::VirtualMachine::GetSingleton()->ReturnLatentResult<bool>(a_stackId, result);
 		});
 		t.detach();
 		
@@ -334,7 +334,7 @@ namespace PyramidUtils::Expression {
 		return true;
 	}
 
-	inline bool SetExpressionSmooth(RE::Actor* a_actor, int a_mood, int a_strength, int a_currentStrength, float a_modifier, float a_speed, int a_delay, RE::VMStackID a_stackId)
+	inline bool SetExpressionSmooth(RE::Actor* a_actor, int a_mood, int a_strength, int a_currentStrength, float a_modifier, float a_speed, int a_delay)
 	{
 		auto animData = GetAnimData(a_actor);
 
@@ -344,7 +344,7 @@ namespace PyramidUtils::Expression {
 		}
 		std::thread t([=]() {
 			SmoothSetExpression(a_actor, a_mood, a_strength, a_currentStrength, a_modifier, a_speed, a_delay);
-			RE::BSScript::Internal::VirtualMachine::GetSingleton()->ReturnLatentResult<bool>(a_stackId, true);
+			//RE::BSScript::Internal::VirtualMachine::GetSingleton()->ReturnLatentResult<bool>(a_stackId, true);
 		});
 		t.detach();
 
@@ -352,7 +352,7 @@ namespace PyramidUtils::Expression {
 	}
 
 
-	inline bool ResetMFGSmooth(RE::Actor* a_actor, int a_mode, float a_speed, int a_delay, int a_stackId)
+	inline bool ResetMFGSmooth(RE::Actor* a_actor, int a_mode, float a_speed, int a_delay)
 	{
 		auto animData = GetAnimData(a_actor);
 
@@ -429,14 +429,14 @@ namespace PyramidUtils::Expression {
 				}
 			}
 
-			RE::BSScript::Internal::VirtualMachine::GetSingleton()->ReturnLatentResult<bool>(a_stackId, true);
+			//RE::BSScript::Internal::VirtualMachine::GetSingleton()->ReturnLatentResult<bool>(a_stackId, true);
 		});
 		t.detach();
 
 		return true;
 	}
 
-	inline bool ApplyExpressionPreset(RE::Actor* a_actor, std::vector<float> a_expression, bool a_openMouth, int exprPower, float exprStrModifier, float modStrModifier, float phStrModifier, float a_speed, int a_delay, RE::VMStackID a_stackId)
+	inline bool ApplyExpressionPreset(RE::Actor* a_actor, std::vector<float> a_expression, bool a_openMouth, int exprPower, float exprStrModifier, float modStrModifier, float phStrModifier, float a_speed, int a_delay)
 	{
 
 		if (a_actor == nullptr)
@@ -503,7 +503,7 @@ namespace PyramidUtils::Expression {
 				++m;
 			}
 
-			RE::BSScript::Internal::VirtualMachine::GetSingleton()->ReturnLatentResult<bool>(a_stackId, true);
+			//RE::BSScript::Internal::VirtualMachine::GetSingleton()->ReturnLatentResult<bool>(a_stackId, true);
 		});
 		t.detach();
 
